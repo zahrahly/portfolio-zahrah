@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zahrah Aliyah | Portofolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- LOADING -->
+<div class="loading-screen" id="loadingScreen">
+  <div class="loading-bg"><div class="loading-grid"></div><div class="loading-glow"></div></div>
+  <div class="loading-content">
+    <div class="loading-logo">Portofolio<span>.</span></div>
+    <div class="loading-counter" id="loadNum" data-num="0">0</div>
+    <div class="loading-bar-wrap"><div class="loading-bar" id="loadBar"></div></div>
+    <div class="loading-label" id="loadLabel">Initializing...</div>
+  </div>
+</div>
+
+<!-- SOUND BTN -->
+<button class="sound-btn" id="soundBtn" title="Toggle music">
+  <svg id="iconOn" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+  <svg id="iconOff" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+  <span id="soundLabel">Music</span>
+</button>
+
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+<canvas id="three-canvas"></canvas>
+
+<!-- NAV -->
+<nav class="nav" id="navbar">
+  <div class="nav-logo">Portofolio.</div>
+  <ul class="nav-links">
+    <li><a href="#home"         class="smooth-scroll" data-i18n="nav.home">Home</a></li>
+    <li><a href="#about"        class="smooth-scroll" data-i18n="nav.about">About</a></li>
+    <li><a href="#projects"     class="smooth-scroll" data-i18n="nav.projects">Projects</a></li>
+    <li><a href="#certificates" class="smooth-scroll" data-i18n="nav.certs">Certificates</a></li>
+    <li><a href="#experience"   class="smooth-scroll" data-i18n="nav.exp">Experience</a></li>
+    <li><a href="#contact"      class="smooth-scroll" data-i18n="nav.contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <span class="lang-div">|</span>
+      <button class="lang-btn" data-lang="id">ID</button>
+    </div>
+    <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-left">
+    <div class="hero-badge"><span class="badge-dot"></span><span data-i18n="hero.badge">Available for Freelance</span></div>
+    <h1><span data-i18n="hero.name">Zahrah</span><br><span class="name-white" data-i18n="hero.name2">Aliyah</span></h1>
+    <p class="hero-role" data-i18n="hero.role">Fullstack Developer &bull; UI/UX Designer</p>
+    <p class="hero-desc" data-i18n="hero.desc">I specialize in building clean, modern, and user-focused web interfaces. My work combines structured frontend code with strong visual hierarchy.</p>
+
+    <div class="hero-actions">
+      <a href="#projects" class="hbtn hbtn-primary smooth-scroll">
+        <span class="hbtn-bg"></span>
+        <span class="hbtn-shine"></span>
+        <span class="hbtn-content">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <span data-i18n="hero.btn1">View Projects</span>
+        </span>
+        <span class="hbtn-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+      <a href="assets/cv/CV_Zahrah Aliyah Rachman.PDF" class="hbtn hbtn-secondary" download>
+        <span class="hbtn-border"></span>
+        <span class="hbtn-inner">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          <span data-i18n="hero.btn2">Download CV</span>
+        </span>
+      </a>
+    </div>
+
+    <div class="hero-social">
+      <a href="https://github.com/zahrahly" target="_blank" class="social-icon" title="GitHub"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+      <a href="www.linkedin.com/in/zahrahaliyah" target="_blank" class="social-icon" title="LinkedIn"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+      <a href="https://wa.me/6285648341116" target="_blank" class="social-icon" title="WhatsApp"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg></a>
+      <a href="mailto:zahrahaliyahhh@gmail.com" class="social-icon" title="Email"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg></a>
+      <a href="https://discord.com/users/zaraaly" target="_blank" class="social-icon" title="Discord"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.079.111 18.1.129 18.116a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+      <a href="https://instagram.com/zahrah.ly" target="_blank" class="social-icon" title="Instagram"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="tech-halo">
+      <div class="halo-light-beam"></div><div class="halo-glow-pulse"></div>
+      <div class="halo-outer"></div><div class="halo-highlight"></div>
+      <div class="halo-inner"></div>
+      <div class="halo-photo"><img src="assets/images/profile1.jpg" alt="Zahrah Aliyah"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <div class="section-eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text" data-i18n="about.eyebrow">Who I Am</span><span class="eyebrow-line"></span></div>
+  <h2 data-i18n="about.title">About Me</h2>
+
+  <div class="about-card">
+    <span class="ac-corner ac-tl"></span><span class="ac-corner ac-tr"></span>
+    <span class="ac-corner ac-bl"></span><span class="ac-corner ac-br"></span>
+
+    <div class="ab-identity">
+      <div class="ab-photo-wrap" id="apzFrame">
+        <div class="ab-photo-inner">
+          <img src="assets/images/profile4.jpg" alt="Zahrah Aliyah">
+          <div class="ab-photo-shine"></div>
+        </div>
+        <div class="ab-status"><span class="ab-status-dot"></span>Available</div>
+      </div>
+      <div class="ab-name-block">
+        <p class="ab-label">FULLSTACK DEVELOPER · UI/UX DESIGNER</p>
+        <h3 class="ab-name">Zahrah<br><em>Aliyah</em></h3>
+        <p class="ab-location">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Surabaya, Indonesia
+        </p>
+      </div>
+      <div class="ab-quote-block">
+        <div class="ab-quote-mark">"</div>
+        <p class="ab-quote">I craft digital experiences at the intersection of code and design — where logic meets aesthetics.</p>
+      </div>
+    </div>
+
+    <div class="ab-divider"></div>
+
+    <div class="ab-body">
+      <div class="ab-story">
+        <h4 class="ab-section-label">MY STORY</h4>
+        <p class="ab-para" data-i18n="about.p1">Information Systems student passionate about building responsive web interfaces. I live at the intersection of code and design — where logic meets aesthetics and every pixel has a purpose.</p>
+        <p class="ab-para" data-i18n="about.p2">Every project is a chance to do something memorable — with clean architecture, thoughtful interactions, and a sharp eye for detail that users feel even when they can't name it.</p>
+
+        <div class="ab-stats-row">
+          <div class="ab-stat-item">
+            <span class="ab-stat-num">3+</span>
+            <span class="ab-stat-text" data-i18n="about.m1">Projects Done</span>
+          </div>
+          <div class="ab-stat-item">
+            <span class="ab-stat-num">20+</span>
+            <span class="ab-stat-text" data-i18n="about.m2">Projects Done</span>
+          </div>
+          <div class="ab-stat-item">
+            <span class="ab-stat-num">10+</span>
+            <span class="ab-stat-text" data-i18n="about.m3">Projects Done</span>
+          </div>
+        </div>
+
+        <a href="assets/cv/CV_Zahrah Aliyah Rachman.PDF" class="hbtn hbtn-primary" download style="display:inline-flex;text-decoration:none;margin-top:8px">
+          <span class="hbtn-bg"></span><span class="hbtn-shine"></span>
+          <span class="hbtn-content">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            <span data-i18n="about.cv">Download CV</span>
+          </span>
+          <span class="hbtn-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </a>
+      </div>
+
+<div class="ab-timeline-col">
+  <h4 class="ab-section-label">MY JOURNEY</h4>
+  <div class="ab-timeline">
+
+    <div class="ab-tl-item">
+      <div class="ab-tl-year">2022</div>
+      <div class="ab-tl-dot"></div>
+      <div class="ab-tl-content">
+        <strong>Started Information Systems Degree</strong>
+        <p>UPN "Veteran" Jawa Timur — focused on UI/UX, web, and databases (GPA 3.94).</p>
+      </div>
+    </div>
+
+    <div class="ab-tl-item">
+      <div class="ab-tl-year">2023</div>
+      <div class="ab-tl-dot"></div>
+      <div class="ab-tl-content">
+        <strong>Organization & UI/UX Competitions</strong>
+        <p>Active in Himasifo and finalist in national UI/UX design competitions.</p>
+      </div>
+    </div>
+
+    <div class="ab-tl-item">
+      <div class="ab-tl-year">2024</div>
+      <div class="ab-tl-dot"></div>
+      <div class="ab-tl-content">
+        <strong>Deputy Head & IT Certifications</strong>
+        <p>Deputy Head at Himasifo and earned IT Specialist certifications (Data Analytics & Databases).</p>
+      </div>
+    </div>
+
+    <div class="ab-tl-item">
+      <div class="ab-tl-year">2025</div>
+      <div class="ab-tl-dot"></div>
+      <div class="ab-tl-content">
+        <strong>Frontend Intern & BNSP Certified</strong>
+        <p>Interned at Dinas Pendidikan Provinsi Jawa Timur + Certified Junior Web Programmer (BNSP).</p>
+      </div>
+    </div>
+
+    <div class="ab-tl-item ab-tl-now">
+      <div class="ab-tl-year">Now</div>
+      <div class="ab-tl-dot ab-tl-dot-now"></div>
+      <div class="ab-tl-content">
+        <strong>Freelance Web & UI/UX Developer</strong>
+        <p>Building responsive and user-centered digital solutions.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+
+
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="projects">
+  <div class="section-eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text" data-i18n="projects.eyebrow">My Work</span><span class="eyebrow-line"></span></div>
+  <h2 data-i18n="projects.title">Selected Projects</h2>
+  <div class="project-list" id="projectList">
+    <article class="project" data-title="Kidzello – Interactive Learning App" data-desc="Kidzello is an innovative interactive learning app designed to support children’s education and development monitoring. As a UI/UX project, it focuses on intuitive interface design, child-friendly visuals, and seamless parent supervision features. The design emphasizes usability, accessibility, and engaging learning experiences for both children and parents." data-role="UI/UX" data-tech="Figma, User Research, Wireframing, Prototyping, Usability Testing" data-link="https://github.com" data-imgs="assets/images/project1.jpg|assets/images/project2.jpg|assets/images/project3.jpg">
+      <div class="project-slider-container"><div class="swiper projectSwiper"><div class="swiper-wrapper"><div class="swiper-slide"><img src="assets/images/project_1.png" alt=""></div><div class="swiper-slide"><img src="assets/images/project_2.png" alt=""></div><div class="swiper-slide"><img src="assets/images/project_3.png" alt=""></div></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div></div>
+      <div class="project-info"><div class="project-meta"><span class="project-tag">UI/UX Design</span></div><h3>Kidzello – Interactive Learning App</h3><p class="project-desc">A child-friendly learning app design featuring Screen Time control, interactive learning modules, creative portfolio space, and progress tracking dashboard.</p><button class="project-detail-btn" data-i18n="proj.detail">View Details &#8599;</button></div>
+    </article>
+
+    <article class="project" data-title="SiDesa – Village Inventory Information System Design" data-desc="SiDesa is a Village Inventory Information System designed to solve issues in inaccurate asset recording and lack of monitoring in village administration. This UI/UX project focuses on improving efficiency, transparency, and data management through structured dashboards, real-time tracking, and user-friendly workflows for village officials." data-role="UI/UX Designer" data-tech="Figma, User Research, Wireframing, Prototyping, Design System" data-link="https://github.com" data-imgs="assets/images/project2.jpg|assets/images/project3.jpg|assets/images/project1.jpg">
+      <div class="project-slider-container"><div class="swiper projectSwiper"><div class="swiper-wrapper"><div class="swiper-slide"><img src="assets/images/project2_1.png" alt=""></div><div class="swiper-slide"><img src="assets/images/project2_1.png" alt=""></div><div class="swiper-slide"><img src="assets/images/project2_1.png" alt=""></div></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div></div>
+      <div class="project-info"><div class="project-meta"><span class="project-tag">UI/UX Design</span></div><h3>SiDesa – Village Inventory System</h3><p class="project-desc">Inventory system design featuring asset tracking, location management, notifications, chat admin, and inventory reporting dashboard.</p><button class="project-detail-btn" data-i18n="proj.detail">View Details &#8599;</button></div>
+    </article>
+
+    <article class="project" data-title="BudayaKita – Cultural Heritage App Design" data-desc="BudayaKita is a cultural platform designed to preserve heritage sites and promote understanding of Chinese-Indonesian culture. This UI/UX project focuses on creating an engaging and accessible digital experience for cultural exploration, UMKM product support, and cultural event reservations in Kampung Pecinan." data-role="UI/UX Designer" data-tech="Figma, User Research, Wireframing, Prototyping, Design System" data-link="https://github.com" data-imgs="assets/images/project3.jpg|assets/images/project1.jpg|assets/images/project2.jpg">
+      <div class="project-slider-container"><div class="swiper projectSwiper"><div class="swiper-wrapper"><div class="swiper-slide"><img src="assets/images/project3_2.png" alt=""></div><div class="swiper-slide"><img src="assets/images/project3_1.png" alt=""></div><div class="swiper-slide"><img src="assets/images/project3_3.png" alt=""></div></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div></div>
+      <div class="project-info"><div class="project-meta"><span class="project-tag">UI/UX Design</span></div><h3>BudayaKita – Cultural Platform</h3><p class="project-desc">Cultural exploration app featuring UMKM cart system, event reservations, ticket barcode verification, and heritage information hub.</p><button class="project-detail-btn" data-i18n="proj.detail">View Details &#8599;</button></div>
+    </article>
+
+    <article class="project extra-card" style="display:none" data-title="My Career – Freelance & Job Platform App" data-desc="My Career is an innovative platform designed to connect freelancers, employers, and job seekers in one efficient ecosystem. This UI/UX project focuses on seamless collaboration, intuitive job discovery, and structured project management to create a comprehensive solution for freelance opportunities and professional networking." data-role="UI/UX Designer" data-tech="Figma, User Research, Wireframing, Prototyping, Design System" data-link="https://github.com" data-imgs="assets/images/project4_1.png|assets/images/project4_2.png|assets/images/project4_3.png">
+      <div class="project-slider-container"><div class="swiper projectSwiper"><div class="swiper-wrapper"><div class="swiper-slide"><img src="assets/images/project4_2.png" alt=""></div><div class="swiper-slide"><img src="assets/images/project4_1.png" alt=""></div><div class="swiper-slide"><img src="assets/images/project4_3.png" alt=""></div></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div></div>
+      <div class="project-info"><div class="project-meta"><span class="project-tag">UI/UX Design</span></div><h3>My Career – Freelance Platform</h3><p class="project-desc">Freelance and job-matching app featuring skill-based project search, employer-job seeker collaboration, and streamlined opportunity management.</p><button class="project-detail-btn" data-i18n="proj.detail">View Details &#8599;</button></div>
+    </article>
+
+    <article class="project extra-card" style="display:none" data-title="Checkout Product – E-Commerce UI/UX Design" data-desc="Checkout Product is a UI/UX design project that focuses on creating an intuitive and visually engaging e-commerce purchasing experience. The design covers the complete user flow from product description, add to cart, checkout process, transaction details, payment and shipping options, to purchase confirmation." data-role="UI/UX Designer" data-tech="Figma, User Flow Design, Wireframing, Prototyping, Design System" data-link="https://github.com" data-imgs="assets/images/project5_1.png|assets/images/project5_2.png|assets/images/project5_3.png">
+      <div class="project-slider-container"><div class="swiper projectSwiper"><div class="swiper-wrapper"><div class="swiper-slide"><img src="assets/images/project5_2.png" alt=""></div><div class="swiper-slide"><img src="assets/images/project5_1.png" alt=""></div><div class="swiper-slide"><img src="assets/images/project5_3.png" alt=""></div></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div></div>
+      <div class="project-info"><div class="project-meta"><span class="project-tag">UI/UX Design</span></div><h3>Checkout Product – E-Commerce Flow</h3><p class="project-desc">Complete checkout flow design including product details, cart, payment & shipping options, transaction summary, and success confirmation page.</p><button class="project-detail-btn" data-i18n="proj.detail">View Details &#8599;</button></div>
+    </article>
+
+    <article class="project extra-card" style="display:none" data-title="D'Coffee – Cafe Management Information System" data-desc="D'Coffee is a cafe management information system designed to streamline ordering, menu management, employee data handling, sales transactions, and reporting. Developed using Visual Studio and MySQL, this system improves operational efficiency and ensures structured data management for different user roles." data-role="System Developer" data-tech="Visual Studio, MySQL, Database Design, System Analysis" data-link="https://github.com" data-imgs="assets/images/project6_1.png|assets/images/project6_2.png">
+      <div class="project-slider-container"><div class="swiper projectSwiper"><div class="swiper-wrapper"><div class="swiper-slide"><img src="assets/images/project6_1.png" alt=""></div><div class="swiper-slide"><img src="assets/images/project6_2.png" alt=""></div></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div></div>
+      <div class="project-info"><div class="project-meta"><span class="project-tag">Desktop Program</span></div><h3>D'Coffee – Cafe Management System</h3><p class="project-desc">Cafe information system with login, menu & employee management, sales transactions, receipts, and reporting dashboard.</p><button class="project-detail-btn" data-i18n="proj.detail">View Details &#8599;</button></div>
+    </article>
+
+  <article class="project extra-card" style="display:none" data-title="Fruit Game – Web Strategy Game" data-desc="Fruit Game is a web-based strategy game where players combine identical fruits to create larger ones and achieve the highest possible score. The game challenges users to think strategically in arranging fruit positions before the board becomes full and no further moves are possible." data-role="Game Developer" data-tech="HTML, CSS, JavaScript, Game Logic Design" data-link="https://github.com" data-imgs="assets/images/project7_1.png">
+      <div class="project-slider-container"><div class="swiper projectSwiper"><div class="swiper-wrapper"><div class="swiper-slide"><img src="assets/images/project7_1.png" alt=""></div><div class="swiper-slide"><img src="assets/images/project7_1.png" alt=""></div></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div></div>
+      <div class="project-info"><div class="project-meta"><span class="project-tag">Web Game</span></div><h3>Fruit Game – Merge Strategy</h3><p class="project-desc">Interactive fruit-merging web game focused on strategic thinking, score optimization, and dynamic gameplay mechanics.</p><button class="project-detail-btn" data-i18n="proj.detail">View Details &#8599;</button></div>
+    </article>
+
+    <article class="project extra-card" style="display:none" data-title="Buku Tamu – Dinas Pendidikan Provinsi Jawa Timur" data-desc="Buku Tamu is a web-based guest management information system developed for Dinas Pendidikan Provinsi Jawa Timur. This project covers end-to-end UI/UX design and fullstack development, focusing on structured data recording, visitor management, survey integration, and real-time dashboard monitoring to improve administrative efficiency." data-role="UI/UX Designer & Fullstack Developer" data-tech="Laravel, Tailwind CSS, MySQL, VS Code, UI/UX Design, System Development" data-link="https://github.com" data-imgs="assets/images/project8_1.png|assets/images/project8_2.png|assets/images/project8_3.png">
+      <div class="project-slider-container"><div class="swiper projectSwiper"><div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="assets/images/project8_2.png" alt=""></div>
+        <div class="swiper-slide"><img src="assets/images/project8_1.png" alt=""></div>
+        <div class="swiper-slide"><img src="assets/images/project8_3.png" alt=""></div>
+      </div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div></div>
+      <div class="project-info">
+        <div class="project-meta"><span class="project-tag">Fullstack Web App</span></div>
+        <h3>Buku Tamu – Guest Management System</h3>
+        <p class="project-desc">Government guest management system with digital guest book, survey module, admin dashboard, and data reporting features.</p>
+        <button class="project-detail-btn" data-i18n="proj.detail">View Details &#8599;</button>
+      </div>
+    </article>
+
+<article class="project extra-card" style="display:none" data-title="WattWay – Sustainable Transportation App UI/UX Design" data-desc="WattWay is a sustainable transportation mobile app designed to promote eco-friendly mobility and carbon footprint awareness. The design covers complete user flows including splash screen, onboarding, login/signup, real-time electric ride booking, carbon footprint calculator, charging station map, trip history tracking, and reward-based challenges to encourage greener transportation habits." data-role="UI/UX Designer" data-tech="Figma, User Research, Wireframing, Prototyping, Design System" data-link="https://github.com" data-imgs="assets/images/project9_1.png|assets/images/project9_2.png|assets/images/project9_3.png">
+      <div class="project-slider-container"><div class="swiper projectSwiper"><div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="assets/images/project9_1.png" alt=""></div>
+        <div class="swiper-slide"><img src="assets/images/project9_2.png" alt=""></div>
+        <div class="swiper-slide"><img src="assets/images/project9_3.png" alt=""></div>
+      </div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div></div>
+      <div class="project-info">
+        <div class="project-meta"><span class="project-tag">UI/UX Design</span></div>
+        <h3>WattWay – Eco Transport App</h3>
+        <p class="project-desc">Eco-transport mobile app featuring electric ride booking, carbon emission tracking, charging station locator, and reward-based sustainability challenges.</p>
+        <button class="project-detail-btn" data-i18n="proj.detail">View Details &#8599;</button>
+      </div>
+    </article>
+
+<article class="project extra-card" style="display:none" data-title="Creativo – Creative Learning & Marketplace Platform" data-desc="Creativo is a web-based creative learning platform focused on art and design education. Users can pick courses such as painting, digital art, photography, and graphic design with structured learning paths. The platform also integrates a UMKM artwork marketplace to support local artists. The system was fully developed using Visual Studio Code with PHP, JavaScript, Laravel, and MySQL, and selected programs like Digital Art include certification upon completion." data-role="UI/UX Designer & Web Developer" data-tech="Figma, Visual Studio Code, PHP, JavaScript, Laravel, Tailwind CSS, MySQL, UI/UX Research, System Design" data-link="https://github.com" data-imgs="assets/images/project10_1.png|assets/images/project10_2.png|assets/images/project10_3.png">
+  <div class="project-slider-container"><div class="swiper projectSwiper"><div class="swiper-wrapper"><div class="swiper-slide"><img src="assets/images/project10_1.png" alt=""></div><div class="swiper-slide"><img src="assets/images/project10_2.png" alt=""></div><div class="swiper-slide"><img src="assets/images/project10_3.png" alt=""></div></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div></div>
+  <div class="project-info"><div class="project-meta"><span class="project-tag">Fullstack Web App</span></div><h3>Creativo – Creative Learning Platform</h3><p class="project-desc">Creative education website with course enrollment, certification system, and integrated UMKM artwork marketplace built using PHP and JavaScript.</p><button class="project-detail-btn" data-i18n="proj.detail">View Details &#8599;</button></div>
+</article>
+
+<article class="project extra-card" style="display:none" data-title="Jobox – Explore the Best Suitable Job for You!" data-desc="Jobox is a job platform application designed to connect jobseekers and employers in one integrated ecosystem. The app provides personalized job recommendations, smart filtering, and application tracking for jobseekers. On the employer side, it offers job posting management, candidate screening, and recruitment dashboard features. The design focuses on creating a seamless, efficient, and user-centered hiring experience." data-role="UI/UX Designer" data-tech="Figma, User Research, Wireframing, Prototyping, Design System" data-link="https://github.com" data-imgs="assets/images/project11_1.png|assets/images/project11_2.png|assets/images/project11_3.png">
+  <div class="project-slider-container"><div class="swiper projectSwiper"><div class="swiper-wrapper"><div class="swiper-slide"><img src="assets/images/project11_1.png" alt=""></div><div class="swiper-slide"><img src="assets/images/project11_2.png" alt=""></div><div class="swiper-slide"><img src="assets/images/project11_3.png" alt=""></div></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div></div>
+  <div class="project-info"><div class="project-meta"><span class="project-tag">UI/UX Design</span></div><h3>Jobox – Job Platform App</h3><p class="project-desc">Job platform design with dual-role system for jobseekers and employers, featuring smart job matching and recruitment dashboard.</p><button class="project-detail-btn" data-i18n="proj.detail">View Details &#8599;</button></div>
+</article>
+
+  </div>
+  <div style="display:flex;justify-content:center;margin-top:48px"><button class="see-more-btn" id="projMore" data-i18n="common.more">See More</button></div>
+</section>
+
+<!-- PROJECT MODAL — UPDATED VISIT BUTTON -->
+<div class="proj-modal" id="projModal">
+  <div class="proj-modal-bg" id="projModalBg"></div>
+  <div class="proj-modal-inner">
+    <button class="proj-modal-close" id="projModalClose">&times;</button>
+    <div class="pm-gallery">
+      <div class="swiper pm-swiper" id="pmSwiper"><div class="swiper-wrapper" id="pmSlides"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div><div class="swiper-pagination"></div></div>
+      <div class="pm-gallery-hint">← Swipe photos →</div>
+    </div>
+    <div class="pm-info">
+      <div class="pm-tag-row"><span class="pm-tag" id="pmTag"></span></div>
+      <h2 id="pmTitle"></h2>
+      <p class="pm-role" id="pmRole"></p>
+      <p class="pm-desc" id="pmDesc"></p>
+      <div class="pm-divider"></div>
+      <div class="pm-tech-wrap"><strong>Tech Stack</strong><p id="pmTech"></p></div>
+
+      <!-- ★ NEW: Cyberpunk Neon Portal Button ★ -->
+      <a id="pmLink" href="#" target="_blank" class="visit-btn-portal">
+  <!-- Static gradient border (NO spin) -->
+  <span class="vbp-border"></span>
+
+  <!-- Glass body -->
+  <span class="vbp-body">
+    <!-- Shimmer sweep -->
+    <span class="vbp-shimmer"></span>
+
+    <!-- Soft color blobs (gentle float only) -->
+    <span class="vbp-blob vbp-blob-1"></span>
+    <span class="vbp-blob vbp-blob-2"></span>
+
+    <!-- Icon -->
+    <span class="vbp-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" y1="14" x2="21" y2="3"/>
+      </svg>
+    </span>
+
+    <!-- Text -->
+    <span class="vbp-text" data-i18n="proj.visit">Visit Project</span>
+
+    <!-- Arrow slides in on hover -->
+    <span class="vbp-arrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </span>
+  </span>
+</a>
+
+
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY LIGHTBOX -->
+<div class="gallery-lightbox" id="galleryLightbox">
+  <div class="glb-bg" id="glbBg"></div>
+  <button class="glb-close" id="glbClose">&times;</button>
+  <button class="glb-prev" id="glbPrev">&#8592;</button>
+  <button class="glb-next" id="glbNext">&#8594;</button>
+  <div class="glb-img-wrap"><img id="glbImg" src="" alt=""></div>
+  <div class="glb-counter" id="glbCounter"></div>
+</div>
+
+<!-- CERTIFICATES -->
+<section id="certificates" class="certificates">
+  <div class="section-eyebrow">
+    <span class="eyebrow-line"></span>
+    <span class="eyebrow-text" data-i18n="certs.eyebrow">Credentials</span>
+    <span class="eyebrow-line"></span>
+  </div>
+
+  <h2 data-i18n="certs.title">Certificates &amp; Awards</h2>
+
+  <div class="certificates-grid" id="certGrid">
+
+    <!-- 1 - IT Specialist Databases -->
+    <div class="certificate-item">
+      <div class="certificate-image">
+        <img src="assets/images/sertif4.jpg" alt="IT Specialist Databases">
+      </div>
+      <div class="certificate-info">
+        <h3>IT Specialist: Databases</h3>
+        <p class="cert-issuer">Certiport – A Pearson VUE Business</p>
+        <p class="cert-date">Issued October 2024 | ID: uTT5-XM3o</p>
+        <a href="#" class="cert-link">View Certificate &rarr;</a>
+      </div>
+    </div>
+
+    <!-- 2 - IT Specialist Data Analytics -->
+    <div class="certificate-item">
+      <div class="certificate-image">
+        <img src="assets/images/sertif3.jpg" alt="IT Specialist Data Analytics">
+      </div>
+      <div class="certificate-info">
+        <h3>IT Specialist: Data Analytics</h3>
+        <p class="cert-issuer">Certiport – A Pearson VUE Business</p>
+        <p class="cert-date">Issued November 2024 | ID: dD2r-uTFX</p>
+        <a href="#" class="cert-link">View Certificate &rarr;</a>
+      </div>
+    </div>
+
+    <!-- 3 - Junior Web Programmer BNSP -->
+    <div class="certificate-item">
+      <div class="certificate-image">
+        <img src="assets/images/sertif5.jpg" alt="Junior Web Programmer BNSP">
+      </div>
+      <div class="certificate-info">
+        <h3>Junior Web Programmer Certification</h3>
+        <p class="cert-issuer">BNSP – National Professional Certification Board</p>
+        <p class="cert-date">2025</p>
+        <a href="#" class="cert-link">View Certificate &rarr;</a>
+      </div>
+    </div>
+
+    <!-- 4 - Finalist UI/UX -->
+    <div class="certificate-item extra-card" style="display:none">
+      <div class="certificate-image">
+        <img src="assets/images/sertif1.jpg" alt="Finalist UI/UX ADIKTIF 2023">
+      </div>
+      <div class="certificate-info">
+        <h3>Finalist – UI/UX Design Competition</h3>
+        <p class="cert-issuer">Fasilkom Fest ADIKTIF 2023</p>
+        <p class="cert-date">2023</p>
+        <a href="#" class="cert-link">View Certificate &rarr;</a>
+      </div>
+    </div>
+
+    <!-- 5 - Best Web Design VWO -->
+    <div class="certificate-item extra-card" style="display:none">
+      <div class="certificate-image">
+        <img src="assets/images/sertif2.jpg" alt="Best Web Design VWO UI 2024">
+      </div>
+      <div class="certificate-info">
+        <h3>Best Web Design – UI/UX Competition</h3>
+        <p class="cert-issuer">Vocational Worldwide Olympiad 2024 – Universitas Indonesia</p>
+        <p class="cert-date">2024</p>
+        <a href="#" class="cert-link">View Certificate &rarr;</a>
+      </div>
+    </div>
+
+    <!-- 6 - Juara 2 Tech Dev -->
+    <div class="certificate-item extra-card" style="display:none">
+      <div class="certificate-image">
+        <img src="assets/images/sertif6.jpg" alt="Juara 2 Tech Dev 2024">
+      </div>
+      <div class="certificate-info">
+        <h3>2nd Place – Tech Development Competition</h3>
+        <p class="cert-issuer">Information System Competition 2024</p>
+        <p class="cert-date">July – August 2024</p>
+        <a href="#" class="cert-link">View Certificate &rarr;</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="display:flex;justify-content:center;margin-top:40px">
+    <button class="see-more-btn" id="certMore" data-i18n="common.more">
+      See More
+    </button>
+  </div>
+</section>
+
+
+
+<!-- PAPERS -->
+<section id="papers" class="papers">
+  <div class="section-eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text" data-i18n="papers.eyebrow">Research</span><span class="eyebrow-line"></span></div>
+  <h2 data-i18n="papers.title">Papers &amp; Journals</h2>
+
+  <div class="paper-list" id="paperList">
+
+    <!-- 2025 - Ecobrick -->
+    <div class="paper-card">
+      <div class="paper-year">2025</div>
+      <div class="paper-body">
+        <h3>Transforming Plastic Waste into Ecobrick-Based Creative Economy Products in Kebonsari Village, Surabaya</h3>
+        <p class="paper-journal">Jati Emas (Jurnal Aplikasi Teknik dan Pengabdian Masyarakat) &mdash; Vol. 9, No. 3 &middot; 2025</p>
+        <p class="paper-abstract">This community engagement research focuses on transforming plastic waste into ecobrick-based creative economy products to enhance environmental sustainability and local economic empowerment.</p>
+        <div class="paper-tags"><span>Community Service</span><span>Creative Economy</span><span>Sustainability</span></div>
+        <a href="https://doi.org/10.12345/je.v9i3" class="cert-link" target="_blank">Read Paper &rarr;</a>
+      </div>
+    </div>
+
+    <!-- 2025 - OWASP -->
+    <div class="paper-card">
+      <div class="paper-year">2025</div>
+      <div class="paper-body">
+        <h3>Analisis Keamanan Website E-learning ILMU2 Menggunakan Metode OWASP ZAP</h3>
+        <p class="paper-journal">Neptunus: Jurnal Ilmu Komputer dan Teknologi Informasi &mdash; Vol. 3, No. 3 &middot; 2025</p>
+        <p class="paper-abstract">This study evaluates website security vulnerabilities using OWASP ZAP to identify potential threats and improve security standards in e-learning systems.</p>
+        <div class="paper-tags"><span>Cybersecurity</span><span>OWASP</span><span>Web Security</span></div>
+        <a href="https://doi.org/10.61132/neptunus.v3i3.887" class="cert-link" target="_blank">Read Paper &rarr;</a>
+      </div>
+    </div>
+
+    <!-- 2024 - TAM Netflix -->
+    <div class="paper-card">
+      <div class="paper-year">2024</div>
+      <div class="paper-body">
+        <h3>Evaluasi Penerimaan Aplikasi Netflix Menggunakan Technology Acceptance Model (TAM)</h3>
+        <p class="paper-journal">Prosiding Seminar Nasional Teknologi dan Sistem Informasi &mdash; Vol. 4, No. 1 &middot; 2024</p>
+        <p class="paper-abstract">This research analyzes user acceptance of the Netflix application using the Technology Acceptance Model (TAM) to measure perceived usefulness, ease of use, and behavioral intention.</p>
+        <div class="paper-tags"><span>TAM</span><span>Technology Adoption</span><span>UX Research</span></div>
+        <a href="https://doi.org/10.33005/sitasi.v4i1.781" class="cert-link" target="_blank">Read Paper &rarr;</a>
+      </div>
+    </div>
+
+    <!-- 2023 - CRM -->
+    <div class="paper-card extra-card" style="display:none">
+      <div class="paper-year">2023</div>
+      <div class="paper-body">
+        <h3>Analisis Faktor yang Mempengaruhi Customer Relationship Management (CRM) terhadap Kepuasan dan Loyalitas Pelanggan</h3>
+        <p class="paper-journal">Djtechno: Jurnal Teknologi Informasi &mdash; Vol. 4, No. 2 &middot; 2023</p>
+        <p class="paper-abstract">This study examines the influence of CRM implementation on customer satisfaction and loyalty using quantitative analysis methods to evaluate business relationship performance.</p>
+        <div class="paper-tags"><span>CRM</span><span>Customer Loyalty</span><span>Business Analysis</span></div>
+        <a href="https://doi.org/10.46576/djtechno" class="cert-link" target="_blank">Read Paper &rarr;</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="display:flex;justify-content:center;margin-top:40px">
+    <button class="see-more-btn" id="paperMore" data-i18n="common.more">See More</button>
+  </div>
+</section>
+
+
+<!-- GALLERY -->
+<section id="gallery" class="gallery-section">
+  <div class="section-eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text" data-i18n="gallery.eyebrow">Gallery</span><span class="eyebrow-line"></span></div>
+  <h2 data-i18n="gallery.title">Visual Gallery</h2>
+
+  <div class="gallery-runway" style="margin-bottom:16px">
+    <div class="gallery-track">
+      <div class="gal-item" data-src="assets/images/gallery1.jpg"><img src="assets/images/gallery1.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery2.jpg"><img src="assets/images/gallery2.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery3.jpg"><img src="assets/images/gallery3.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery4.jpg"><img src="assets/images/gallery4.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery5.jpg"><img src="assets/images/gallery5.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery6.jpg"><img src="assets/images/gallery6.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery7.jpg"><img src="assets/images/gallery7.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery8.jpg"><img src="assets/images/gallery8.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery9.jpg"><img src="assets/images/gallery9.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery10.jpg"><img src="assets/images/gallery10.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery1.jpg"><img src="assets/images/gallery1.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery2.jpg"><img src="assets/images/gallery2.jpg" alt=""></div>
+    </div>
+  </div>
+
+  <div class="gallery-runway">
+    <div class="gallery-track gallery-track-reverse">
+      <div class="gal-item" data-src="assets/images/gallery10.jpg"><img src="assets/images/gallery10.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery9.jpg"><img src="assets/images/gallery9.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery8.jpg"><img src="assets/images/gallery8.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery7.jpg"><img src="assets/images/gallery7.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery6.jpg"><img src="assets/images/gallery6.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery5.jpg"><img src="assets/images/gallery5.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery4.jpg"><img src="assets/images/gallery4.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery3.jpg"><img src="assets/images/gallery3.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery2.jpg"><img src="assets/images/gallery2.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery1.jpg"><img src="assets/images/gallery1.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery10.jpg"><img src="assets/images/gallery10.jpg" alt=""></div><div class="gal-item" data-src="assets/images/gallery9.jpg"><img src="assets/images/gallery9.jpg" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="experience">
+  <div class="section-eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text" data-i18n="exp.eyebrow">My Journey</span><span class="eyebrow-line"></span></div>
+  <h2 data-i18n="exp.title">Experience &amp; Education</h2>
+  <div class="experience-container">
+
+    <div class="exp-section">
+      <h3 class="exp-section-title" data-i18n="exp.work">Work Experience</h3>
+      <div class="timeline">
+        <div class="item">
+  <span>2026</span>
+  <h4>Event Crew – F&B & Runner</h4>
+  <p class="company">Chinese New Year Event – CIMB Niaga • Surabaya</p>
+  <p>
+    Supported event operations including food & beverage setup, table arrangement, logistics preparation 
+    for souvenirs and hampers, guest reception, and on-site coordination to ensure smooth execution of 
+    the Chinese New Year client event.
+  </p>
+</div>
+        <div class="item">
+          <span>2025 &ndash; Present</span>
+          <h4>Freelance Web Developer</h4>
+          <p class="company">Self-Employed &bull; Remote</p>
+          <p>Developing custom web applications using PHP, Laravel, JavaScript, and MySQL, including dashboard systems and responsive UI implementation.</p>
+        </div>
+        
+        <div class="item">
+          <span>2025</span>
+          <h4>Web Developer Intern</h4>
+          <p class="company">Dinas Pendidikan Provinsi Jawa Timur &bull; Surabaya</p>
+          <p>Developed and enhanced internal information systems, including data dashboards, filtering features, and system optimization for administrative use.</p>
+        </div>
+
+        <div class="item">
+          <span>2024</span>
+          <h4>Assistant Chief Administrative Staff</h4>
+          <p class="company">Event Organizer – Employee &amp; Industrial Relations Conferences PTC &bull; Bali</p>
+          <p>Prepared event documentation and managed data for 1000+ participants, ensuring accurate reporting and seamless administrative coordination.</p>
+        </div>
+
+        <div class="item">
+          <span>2024</span>
+          <h4>Assistant Chief Finance Staff</h4>
+          <p class="company">Event Organizer – BUMN Learning Festival PTC &bull; Balikpapan</p>
+          <p>Managed budgeting, financial recording, and prepared detailed financial reports to ensure transparency and accuracy during large-scale events.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="exp-section">
+      <h3 class="exp-section-title" data-i18n="exp.org">Organization &amp; Committee</h3>
+      <div class="timeline">
+
+        <div class="item">
+          <span>2024 &ndash; 2025</span>
+          <h4>Deputy Head of Department of Home Affairs</h4>
+          <p class="company">HIMASIFO UPN &ldquo;Veteran&rdquo; Jawa Timur &bull; Surabaya</p>
+          <p>Assisted in leading departmental programs, coordinating internal events and competitions, and ensuring smooth execution of work agendas.</p>
+        </div>
+
+        <div class="item">
+          <span>2023 &ndash; 2024</span>
+          <h4>Staff of Department of Home Affairs</h4>
+          <p class="company">HIMASIFO UPN &ldquo;Veteran&rdquo; Jawa Timur &bull; Surabaya</p>
+          <p>Implemented departmental work programs and facilitated internal talent development within the Information Systems student community.</p>
+        </div>
+
+        <div class="item">
+          <span>2024</span>
+          <h4>Coach – AIESEC Future Leader</h4>
+          <p class="company">AIESEC Surabaya</p>
+          <p>Provided mentoring, conducted individual and team performance evaluations, and supported leadership development initiatives.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="exp-section">
+      <h3 class="exp-section-title" data-i18n="exp.edu">Education</h3>
+      <div class="timeline">
+
+        <div class="item">
+          <span>2022 &ndash; Present</span>
+          <h4>Bachelor of Information Systems</h4>
+          <p class="company">Universitas Pembangunan Nasional &ldquo;Veteran&rdquo; Jawa Timur &bull; Surabaya</p>
+          <p>GPA: 3.92 / 4.00. Relevant coursework: Database Management, UI/UX Design, Web Development, Programming Fundamentals.</p>
+        </div>
+
+        <div class="item">
+          <span>2024</span>
+          <h4>Certified Independent Study – Data Analyst Pathway</h4>
+          <p class="company">Kampus Merdeka x MyEduSolve &bull; Jakarta</p>
+          <p>Completed multiple real-world data analysis projects covering SQL, Python, descriptive &amp; inferential statistics, data visualization, and Microsoft Excel Associate &amp; Expert competencies.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- SKILLS -->
+<section class="skills">
+  <div class="section-eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text" data-i18n="skills.eyebrow">What I Use</span><span class="eyebrow-line"></span></div>
+  <h2 data-i18n="skills.title">Skills &amp; Tools</h2>
+
+  <div class="skill-grid">
+
+    <!-- FRONTEND -->
+    <div class="skill-category">
+      <h3 data-i18n="skills.fe">Frontend</h3>
+      <div class="skills-items">
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"><span>HTML5</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"><span>CSS3</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"><span>JavaScript</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"><span>React</span></div>
+        <div class="skill-item"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/threejs/threejs-original.svg" alt="ThreeJS" style="filter:invert(1)"><span>Three.js</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap"><span>Bootstrap</span></div>
+        <div class="skill-item"><img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="Tailwind"><span>Tailwind CSS</span></div>
+      </div>
+    </div>
+
+    <!-- BACKEND -->
+    <div class="skill-category">
+      <h3 data-i18n="skills.be">Backend &amp; Database</h3>
+      <div class="skills-items">
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP"><span>PHP</span></div>
+<div class="skill-item">
+  <img src="https://www.vectorlogo.zone/logos/laravel/laravel-icon.svg" alt="Laravel">
+  <span>Laravel</span>
+</div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/codeigniter/codeigniter-plain.svg" alt="CodeIgniter"><span>CodeIgniter</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"><span>MySQL</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"><span>Python</span></div>
+      </div>
+    </div>
+
+    <!-- DESIGN & TOOLS -->
+    <div class="skill-category">
+      <h3 data-i18n="skills.tools">Design &amp; Tools</h3>
+      <div class="skills-items">
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma"><span>Figma</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code"><span>VS Code</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" alt="Visual Studio"><span>Visual Studio 2019</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="filter:invert(1)"><span>GitHub</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecolab/googlecolab-original.svg" alt="Colab"><span>Google Colab</span></div>
+        <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg" alt="XAMPP"><span>XAMPP</span></div>
+        <div class="skill-item"><img src="https://img.icons8.com/color/48/microsoft-word-2019.png" alt="Word"><span>Microsoft Word</span></div>
+        <div class="skill-item"><img src="https://img.icons8.com/color/48/microsoft-excel-2019.png" alt="Excel"><span>Microsoft Excel</span></div>
+        <div class="skill-item"><img src="https://img.icons8.com/color/48/microsoft-powerpoint-2019.png" alt="PowerPoint"><span>Microsoft PowerPoint</span></div>
+        <div class="skill-item"><img src="https://img.icons8.com/color/48/canva.png" alt="Canva"><span>Canva</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="section-eyebrow"><span class="eyebrow-line"></span><span class="eyebrow-text" data-i18n="contact.eyebrow">Let's Connect</span><span class="eyebrow-line"></span></div>
+  <h2 data-i18n="contact.title">Get In Touch</h2>
+  <div class="contact-content">
+    <div class="contact-info">
+      <h3 data-i18n="contact.sub">Let's work together!</h3>
+      <p data-i18n="contact.p">Open for freelance, collaborations, and new exciting opportunities.</p>
+      <div class="contact-cards">
+        <div class="contact-card"><div class="contact-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="contact-detail"><h4>Email</h4><a href="mailto:zahrahaliyahh@gmail.com">zahrahaliyahh@gmail.com</a></div></div>
+        <div class="contact-card"><div class="contact-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.19 11.9a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div class="contact-detail"><h4>Phone</h4><a href="tel:+6285648341116">+62 856 4834 1116</a></div></div>
+        <div class="contact-card"><div class="contact-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="contact-detail"><h4>Location</h4><p>Surabaya, Indonesia</p></div></div>
+      </div>
+      <div class="social-links-contact">
+        <a href="https://github.com/zahrahly" target="_blank" class="social-link-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> GitHub</a>
+        <a href="www.linkedin.com/in/zahrahaliyah" target="_blank" class="social-link-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg> LinkedIn</a>
+        <a href="https://wa.me/6285648341116" target="_blank" class="social-link-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg> WhatsApp</a>
+        <a href="mailto:zahrahaliyahh@gmail.com" class="social-link-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg> Email</a>
+        <a href="https://discord.com/users/zaraaly" target="_blank" class="social-link-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.079.111 18.1.129 18.116a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg> Discord</a>
+        <a href="https://instagram.com/zahrah.ly" target="_blank" class="social-link-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> Instagram</a>
+      </div>
+    </div>
+    <form class="contact-form" id="contactForm">
+      <div class="form-row">
+        <div class="form-group"><label data-i18n="form.name">Your Name</label><input type="text" placeholder="John Doe" required></div>
+        <div class="form-group"><label data-i18n="form.email">Your Email</label><input type="email" placeholder="john@example.com" required></div>
+      </div>
+      <div class="form-group"><label data-i18n="form.subject">Subject</label><input type="text" placeholder="Project Discussion"></div>
+      <div class="form-group"><label data-i18n="form.message">Message</label><textarea rows="6" placeholder="Tell me about your project..." required></textarea></div>
+      <div class="form-submit-row">
+        <button type="submit" id="sendBtn" class="hbtn hbtn-primary send-btn" style="width:100%;justify-content:center">
+          <span class="hbtn-bg"></span><span class="hbtn-shine"></span>
+          <span class="hbtn-content">
+            <span id="sendBtnText" data-i18n="form.send">Send Message</span>
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M18 2L9 11M18 2L12 18L9 11M18 2L2 8L9 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-bottom">
+    <p>&copy; 2026 Zahrah Aliyah. Crafted with passion &amp; precision.</p>
+    <a href="#home" class="back-to-top smooth-scroll" title="Back to top">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 15V5M10 5L5 10M10 5L15 10"/></svg>
+    </a>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
+<script src="js/three.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
